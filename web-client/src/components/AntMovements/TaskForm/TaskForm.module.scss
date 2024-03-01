@@ -1,0 +1,37 @@
+.form {
+    width: 500px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+}
+
+.text {
+    background-color: #2A2E30;
+    border-radius: 12px;
+    padding: 14px 12px;
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 24px;
+
+    color: white;
+}
+
+.inputsWrapper {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+@media (max-width: 500px) {
+    .form {
+        width: 100%;
+        padding: 5%;
+    }
+    
+    .inputsWrapper {
+        flex-direction: column;
+        justify-content: start;
+    }
+}

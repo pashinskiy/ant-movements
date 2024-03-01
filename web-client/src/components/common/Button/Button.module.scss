@@ -1,0 +1,16 @@
+.button {
+    height: 52px;
+    background-color: #2C68FA !important;
+    border-radius: 10px !important;
+    text-transform: uppercase !important;
+    font-family: 'Roboto Flex' !important;
+    font-style: bold;
+    font-size: 16px !important;
+    line-height: 24px !important;
+    color: white !important;
+}
+
+.buttonDisabled {
+    background-color: #2A2E30 !important;
+    cursor: not-allowed !important;
+}

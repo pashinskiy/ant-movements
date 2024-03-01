@@ -1,0 +1,41 @@
+version: "3.8"
+
+x-logging: &default-logging
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "5"
+
+services:
+  core:
+    build:
+      context: ../core
+      dockerfile: ./Dockerfile
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
+          memory: 1G
+    logging: *default-logging
+    restart: always
+
+  web-client:
+    build:
+      context: ../web-client
+      dockerfile: ./Dockerfile
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
+          memory: 1G
+    logging: *default-logging
+    restart: always
+  
+  nginx:
+    build:
+      context: ../nginx
+      dockerfile: ./Dockerfile
+    logging: *default-logging
+    restart: always
+    ports:
+      - 127.0.0.1:8085:80
