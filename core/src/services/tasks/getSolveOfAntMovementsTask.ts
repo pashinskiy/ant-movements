@@ -17,7 +17,12 @@ export const getSolveOfAntMovementsTask = async ({ x, y, maxSum }: IArgs): Promi
     const cellsQueue: ICell[] = [{ x, y }];
 
     let validCellsCount = 0;
-    let maxX = 0;
+    const croppedField: Responses.IGetTasksAntMovements['croppedField'] = {
+        minX: x,
+        minY: y,
+        maxX: x,
+        maxY: y,
+    };
 
     const addCell = (cell: ICell) => {
         if (!cells[cell.y]) {
@@ -26,7 +31,10 @@ export const getSolveOfAntMovementsTask = async ({ x, y, maxSum }: IArgs): Promi
 
         cells[cell.y][cell.x] = 1;
         validCellsCount++;
-        maxX = Math.max(maxX, cell.x);
+        croppedField.maxX = Math.max(croppedField.maxX, cell.x);
+        croppedField.maxY = Math.max(croppedField.maxY, cell.y);
+        croppedField.minX = Math.min(croppedField.minX, cell.x);
+        croppedField.minY = Math.min(croppedField.minY, cell.y);
     };
 
     addCell(cellsQueue[0]);
@@ -54,7 +62,6 @@ export const getSolveOfAntMovementsTask = async ({ x, y, maxSum }: IArgs): Promi
     return {
         validCellsCount,
         cells,
-        width: maxX,
-        height: cells.length,
+        croppedField,
     };
 };

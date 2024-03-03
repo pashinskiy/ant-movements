@@ -14,8 +14,12 @@ import Styles from './TaskForm.module.scss';
 interface ISolution {
   validCellsCount: number;
   cells: Array<(1 | null)[] | null>;
-  width: number;
-  height: number;
+  croppedField: {
+    minX: number;
+    minY: number;
+    maxX: number;
+    maxY: number;
+  };
 }
 
 const initialValues = {
@@ -127,8 +131,7 @@ export const TaskForm = () => {
           </div>
 
           <PlayingField
-            width={solution.width}
-            height={solution.height}
+            croppedField={solution.croppedField}
             cells={solution.cells}
             onAfterRender={() => {
               setSubmitting(false);
